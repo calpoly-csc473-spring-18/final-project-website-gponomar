@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+
+		<center> <h1>Final Project- Ray Tracer</h1> 
+
+			<p> Gracie Ponomaroff - Spring 2018 </p>
+			<p> Ian Dunn - CSC 473 </p> </center>
+
+			<h2> Project Description</h2>
+				<p>For my CSC 473 final project I decided to combine our current raytracer as weel as some of what I have been learning in CSC 474 Animation, and create a physics based animation of some of the .pov files from this quarter, as well as some of my own. </p>
+
+			<h2> Physics</h2>
+				<p>I used some faux physics to create movement in the scenes. I gave each sphere in the file an initial velocity by altering the pov files and parser to take in an attribute called speed. I also check for intersections between each other object in the file. I use my intersection function from earlier to calculate if I intersect a plane. I calculate intersections between multiple spheres by determining if the differences in their origins are less than or equal to their total radii, and then determine the direction they will "bounce" in by creating a ray between their centers. While this is not perfect physics it isn't bad for simple objects. I also use the length of their radius to determine how much speed it gets from each collision. An object with a larger radius will be less effected than a smaller object if they collide. In the future I would like to give each object a mass as well as fix the rotation that each sphere gets from each collision.  At the end I render each frame as usual,  except between each frame I update the position and speed with effects of gravity as well as possible collisions of each sphere in the file. I then render about 500 frames and play it back at 50fps (using ffmpg to create the mp4).</p>
+			<video controls muted preload="metadata" style=" width:px;  height:px;">
+			<source src="file:///Users/GracieP/csc473/FinalWebsite/freswithnoinitial.mp4" type="video/mp4">
+			Your browser does not support the HTML5 video tag.
+			</video><br />
+		
+			<p>This is the file Fresnel1.pov that we used to test out the Fresnel Effect. I then added a slight x velocity and gravity. This was an initial attempt with intersections between the plane, but not between each other.</p>
+
+			<video controls muted preload="metadata" style=" width:px;  height:px;">
+			<source src="file:///Users/GracieP/csc473/FinalWebsite/freswithradius.mp4" type="video/mp4">
+			Your browser does not support the HTML5 video tag.
+			</video><br />
+			<p>This is Fresnel1.pov again except with some initial x and z velocities as well as sphere intersections implemented. </p>
+
+			<video controls muted preload="metadata" style=" width:px;  height:px;">
+			<source src="file:///Users/GracieP/csc473/FinalWebsite/supersimple.mp4" type="video/mp4">
+			Your browser does not support the HTML5 video tag.
+			</video><br />
+			<p>This is a first attempt with sphere collisions but without any "mass".</p>
+
+			<video controls muted preload="metadata" style=" width:px;  height:px;">
+			<source src="file:///Users/GracieP/csc473/FinalWebsite/slowfinatltest.mp4" type="video/mp4">
+			Your browser does not support the HTML5 video tag.
+			</video><br />
+			<p>Slow version (20fps) of many spheres, with mass as well as reflections and refractions.</p>
+
+			<video controls muted preload="metadata" style=" width:px;  height:px;">
+			<source src="file:///Users/GracieP/csc473/FinalWebsite/fastfinaltest.mp4" type="video/mp4">
+			Your browser does not support the HTML5 video tag.
+			</video><br />
+			<p>Faster with 50fps, of the same image above, the faster playback leads to smoother images.</p>
+
+			<h2> Software Design</h2>
+			<p>xI think one of the best choices I made early on was to use a lot of classes, which is not something I had done much of in C++ prior to this project. My Intersection class was one of the most useful. I was able to pass information "along" a ray for each intersection. This helped tremendously with reflection and refraction. I was able to access normal, colors, object type along with any other useful information. This also made it easy to add an attribute for the class each time I discovered I needed new information passed along. I think another class that was really helpful was how I organized my Object class. I was able to inherit most of the functionality of each object from the Object class with small alterations for each individual object. This enabled for easy additions of new object types, like when we added boxes. I hope this will help me in the future if I decide to add more object types as well as develop the physics for each object and its intersections between each other. </p>
+			<h2> Future Improvements</h2>
+			<p> I would like to clean up some of my code, in particular my recursive function for when a ray hits an object and collects colors. It is a long extensive function that is not easily readable, fixable or testable. I had a lot of trouble finding small errors in the function because it is so extensive and does so much for my raytracer. To make it easier to add to in the future, it needs to be broken up into more functions in particular functions for calculating reflection, refraction, Beers law and Fresnel law.<br /> 
+			I would also like to make my physical animations more realistic when it comes to actual physics. I would like to be able to calculate intersections and bounces for more than just spheres, boxes have proved to be difficult, but could make the raytracer far more powerful.<br />
+			Lastly, I would like to clean up my main function to remove unused functionality, perfect the usable functionality, and add more functionality for testing purposes.  
+</p>
+	</body>
+</html>
